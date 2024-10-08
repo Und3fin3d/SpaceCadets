@@ -1,0 +1,1 @@
+import requests; from bs4 import BeautifulSoup;print(BeautifulSoup(requests.get('https://www.ecs.soton.ac.uk/people/' +input()).content, 'html.parser').find('h1').text)

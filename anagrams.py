@@ -1,0 +1,1 @@
+import requests; from bs4 import BeautifulSoup;print(BeautifulSoup(requests.get(f'https://new.wordsmith.org/anagram/anagram.cgi?anagram={input()}&a=n').content, 'html.parser').find('body').text.split('all:\n')[1][:-109])
