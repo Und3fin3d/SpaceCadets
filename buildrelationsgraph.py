@@ -4,7 +4,7 @@ with open('details.txt') as f: email, password = f.read().splitlines()
 queue = ['tjn1f15']
 visited = {'dem','apb','ldig1y14','msj1a22','hmc1x07','se3e22','em1g17','sqc','kl5g22','meh1r11','sm3y07','zm4g22','alv1e22','ml18g22','ms18g22'}
 
-tree = {}
+graph = {}
 driver= webdriver.Chrome()
 def auth(i):
     WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.ID, "i0116"))).send_keys(email + '\n')
@@ -20,8 +20,7 @@ def getRelation(i):
         auth(i)
     for l in BeautifulSoup(driver.page_source, 'html.parser').find_all('a')[20:-2]:
         if l.text and l.get('href'): 
-            q.append(l.get('href')[38:])
-        
+            q.append(l.get('href')[38:])  
     return q
 
 while queue:
@@ -31,11 +30,54 @@ while queue:
             nodes = getRelation(v)
         except:
             print(v)
-        tree[v] = nodes
+        graph[v] = nodes
         queue.extend(nodes)
         visited.add(v)
+driver.quit()    
+print(len(graph))
+broken = ['dem','apb','ldig1y14','msj1a22','hmc1x07','se3e22','em1g17','sqc','kl5g22','meh1r11','sm3y07','zm4g22','alv1e22','ml18g22','ms18g22']
+def bfs(start):
+    visited = {**{node: False for node in graph}, **{x: True for x in broken}}
+    distance = {node: -1 for node in graph}
+    parent = {node: False for node in graph}
+    queue = [start]
+    visited[start] = True
+    distance[start] = 0
+    while queue:
+        n = queue.pop(0)
+        for v in graph[n]:
+            if not visited[v]:
+                queue.append(v)
+                visited[v] = True
+                distance[v] = distance[n] + 1
+                parent[v] = n
+    return distance, parent
+
+def reconstruct_path(parent, start, end):
+    path = []
+    current = end
+    while current:
+        path.append(current)
+        current = parent[current]
+    path.reverse()
+    return path
+
+def diameter():
+    diameter = 0
+    paths = [] 
+    for node in graph:
+        distances, parent = bfs(node)
+        longest = max(distances.values())
+        if longest > diameter:
+            paths=[]
+        if longest >= diameter:
+            diameter = longest
+            farthest_node = max(distances, key=distances.get)
+            paths.append(reconstruct_path(parent, node, farthest_node))
     
-print(len(tree))
-with open('tree.txt','w') as f:
-    f.write(str(tree))
-driver.quit()
+    for x in paths:
+        print('>>'.join(x))
+    print(f'\n Number of longest paths {len(paths)}\n')
+    return diameter
+
+print(f' Diameter of graph {diameter()}')
