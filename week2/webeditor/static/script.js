@@ -25,10 +25,7 @@ function updateOverlay() {
 
 function updateLineNumbers() {
     const lines = code.value.split('\n').length;
-    lineNumbers.innerHTML = Array(lines)
-        .fill()
-        .map((_, i) => `<div>${i + 1}</div>`)
-        .join('');
+    lineNumbers.innerHTML = Array(lines).fill().map((_, i) => `<div>${i + 1}</div>`) .join('');
 }
 
 updateOverlay();
@@ -52,8 +49,7 @@ socket.on('output', (output) => {
 });
 
 function syntax(text) {
-    const keywords = {'#eabafe': ['while', 'do', 'end'],'#ffc58f': ['clear'],'#bad9fe': ['incr', 'decr']
-    };
+    const keywords = {'#eabafe': ['while', 'do', 'end'],'#ffc58f': ['clear'],'#bad9fe': ['incr', 'decr']};
     let highlighted = text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
     for (const [color, words] of Object.entries(keywords)) {
         const regex = new RegExp(`\\b(${words.join('|')})\\b`, 'g');
