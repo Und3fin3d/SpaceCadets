@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barebones Editor</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="container">
+        <button id="run" class="run">▷ Run</button>
+        <div class="editor-container">
+            <div id="line-numbers" class="line-numbers"></div>
+            <div class="editor">
+                <textarea id="code" class="code" spellcheck="false"></textarea>
+            </div>
+        </div>
+        <div id="terminal" class="terminal hidden">
+            <div class="terminal-header">
+                <span>Output</span>
+                <button id="close-terminal" class="close-terminal">×</button>
+            </div>
+            <pre id="terminal-output" class="terminal-output"></pre>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="../static/script.js"></script>
+</body>
+</html>

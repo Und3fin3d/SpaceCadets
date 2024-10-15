@@ -1,0 +1,105 @@
+body {
+    font-family: 'Comic Sans MS', cursive;
+    background-color: #001733;
+    color: #c7c7c7;
+    margin: 20px;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    margin-top: 1.5vh;
+}
+
+.editor-container {
+    display: flex;
+    border: 1px solid #ccc;
+}
+
+.line-numbers {
+    background-color: #001733;
+    color: #c7c7c7;
+    font-family: Consolas, monospace;
+    font-size: 16px;
+    line-height: 1;
+    padding: 2vh 10px;
+    text-align: right;
+    user-select: none;
+}
+
+.editor {
+    position: relative;
+    flex-grow: 1;
+}
+
+.code {
+    background-color: transparent;
+    color: transparent;
+    caret-color: white;
+    font-family: Consolas, monospace;
+    font-size: 16px;
+    line-height: 1;
+    padding: 2vh;
+    height: 60vh;
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: vertical;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.run {
+    position: absolute;
+    top: -30px;
+    right: 0;
+    background-color: green;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: sans-serif;
+}
+
+.terminal {
+    margin-top: 20px;
+    background-color: #002451;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.terminal-header {
+    background-color: #001733;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.terminal-output {
+    padding: 10px;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    font-family: Consolas, monospace;
+    font-size: 14px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.close-terminal {
+    background: none;
+    border: none;
+    color: #c7c7c7;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
